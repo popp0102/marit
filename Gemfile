@@ -4,13 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.7.5"
 
 gem "rails", "~> 7.0.4"
-gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
+gem "sprockets-rails", "~> 3.4.2"
 
 group :test do
-  gem 'pry-byebug'
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
+  gem 'pry-byebug', "~> 3.10.1"
+  gem 'rspec-rails', "~> 6.0.1"
+  gem 'factory_bot_rails', "~> 6.2.0"
 end
 
