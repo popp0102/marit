@@ -1,18 +1,18 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.5"
+ruby '2.7.5'
 
-gem "rails", "~> 7.0.4"
-gem "sqlite3", "~> 1.4"
-gem 'active_model_serializers'
+gem 'rails', '~> 7.0.4'
+gem 'sqlite3', '~> 1.4'
+gem 'active_model_serializers', '~> 0.10.13'
 
-gem "puma", "~> 5.0"
-gem "sprockets-rails", "~> 3.4.2"
+gem 'puma', '~> 5.0'
+gem 'sprockets-rails', '~> 3.4.2'
 
 group :test do
-  gem 'pry-byebug', "~> 3.10.1"
-  gem 'rspec-rails', "~> 6.0.1"
-  gem 'factory_bot_rails', "~> 6.2.0"
+  gem 'pry-byebug', '~> 3.10.1'
+  gem 'rspec-rails', '~> 6.0.1'
+  gem 'factory_bot_rails', '~> 6.2.0'
 end
 

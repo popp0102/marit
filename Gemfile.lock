@@ -190,7 +190,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
+  active_model_serializers (~> 0.10.13)
   factory_bot_rails (~> 6.2.0)
   pry-byebug (~> 3.10.1)
   puma (~> 5.0)
