@@ -1,0 +1,15 @@
+<h1> Network Devices </h1>
+
+<table>
+  <tr>
+    <th>MAC Address</th>
+    <th>Name</th>
+  <tr>
+  <% @network_devices.each do |network_device| %>
+  <tr>
+    <th><%= network_device.mac_address%></th>
+    <th><%= network_device.name%></th>
+  <tr>
+  <% end %>
+</table>
+
