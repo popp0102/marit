@@ -6,7 +6,6 @@ ruby '2.7.5'
 gem 'rails', '~> 7.0.4'
 gem 'sqlite3', '~> 1.4'
 gem 'active_model_serializers', '~> 0.10.13'
-
 gem 'puma', '~> 5.0'
 gem 'sprockets-rails', '~> 3.4.2'
 
