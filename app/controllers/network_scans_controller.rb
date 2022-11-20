@@ -4,4 +4,5 @@ class NetworkScansController < ApplicationController
 
   def new
   end
-end 
+end
+

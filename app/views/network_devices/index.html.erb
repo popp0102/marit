@@ -4,11 +4,13 @@
   <tr>
     <th>MAC Address</th>
     <th>Name</th>
+    <th>Actions</th>
   <tr>
   <% @network_devices.each do |network_device| %>
   <tr>
     <th><%= network_device.mac_address%></th>
     <th><%= network_device.name%></th>
+    <th><a href='/network_devices/show'>Track</a></th>
   <tr>
   <% end %>
 </table>
