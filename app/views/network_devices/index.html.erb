@@ -10,8 +10,10 @@
   <tr>
     <th><%= network_device.mac_address%></th>
     <th><%= network_device.name%></th>
-    <th><a href='/network_devices/show'>Track</a></th>
+    <th><a href='/network_devices/<%=network_device.id%>'>Track</a></th>
   <tr>
   <% end %>
 </table>
+
+<button><a href='/network_devices/new'>Add Network Device</a></button>
 

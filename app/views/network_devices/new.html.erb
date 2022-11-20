@@ -1,0 +1,10 @@
+<h1> Add a device </h1>
+
+<%= form_with model: @network_device, url: network_devices_path, method: :post, local: true do |f| %>
+
+<%= f.text_field :mac_address %>
+<%= f.text_field :name %>
+<%= f.submit %>
+
+<% end %>
+
