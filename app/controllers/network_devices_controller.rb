@@ -14,6 +14,12 @@ class NetworkDevicesController < ApplicationController
     redirect_to network_devices_url
   end
 
+  def destroy
+    @network_device = NetworkDevice.find(params[:id])
+    @network_device.destroy
+    redirect_to network_devices_url
+  end
+
   def show
     puts "tracking: #{params}"
   end

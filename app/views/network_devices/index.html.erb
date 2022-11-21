@@ -14,8 +14,7 @@
         <th><%= network_device.name%></th>
         <th class='btn-group'>
           <button type='button' class='btn btn-primary'>Track</button>
-          <button type='button' class='btn btn-danger'>Delete</button>
-        </th>
+          <%= button_to 'Delete', network_device, method: :delete, class: 'btn btn-danger' %>
       <tr>
     <% end %>
   </table>
