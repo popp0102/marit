@@ -1,19 +1,23 @@
-<h1> Network Devices </h1>
-
-<table>
-  <tr>
-    <th>MAC Address</th>
-    <th>Name</th>
-    <th>Actions</th>
-  <tr>
-  <% @network_devices.each do |network_device| %>
-  <tr>
-    <th><%= network_device.mac_address%></th>
-    <th><%= network_device.name%></th>
-    <th><a href='/network_devices/<%=network_device.id%>'>Track</a></th>
-  <tr>
-  <% end %>
-</table>
-
-<button><a href='/network_devices/new'>Add Network Device</a></button>
+<div class="row">
+  <table class='table table-hover'>
+    <caption>Stored Network Devices</caption>
+    <thead class='thead-light'>
+      <tr>
+        <th>MAC Address</th>
+        <th>Name</th>
+        <th>Actions</th>
+      <tr>
+    </thead>
+    <% @network_devices.each do |network_device| %>
+      <tr>
+        <th><%= network_device.mac_address%></th>
+        <th><%= network_device.name%></th>
+        <th class='btn-group'>
+          <button type='button' class='btn btn-primary'>Track</button>
+          <button type='button' class='btn btn-danger'>Delete</button>
+        </th>
+      <tr>
+    <% end %>
+  </table>
+</div>
 
