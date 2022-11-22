@@ -2,6 +2,8 @@
 
 from scapy.all import *
 import sqlite3
+import datetime
+import random
 
 MACS = {}
 
@@ -13,7 +15,13 @@ if __name__ == "__main__":
     sniff(iface="wlo1", prn=handler, store=0, timeout=10)
     conn = sqlite3.connect('./db/development.sqlite3')
     cur  = conn.cursor()
+    now  = str(datetime.datetime.now())
+    name = "scan-" + str(random.randrange(1000000))
     for mac, valud in MACS.items():
-        cur.execute('INSERT INTO network_devices(mac_address, name, created_at, updated_at) VALUES(?,?,?,?)', (mac,'hi', '2022-11-22', '2022-11-22'))
+        try:
+            cur.execute('INSERT INTO network_devices(mac_address, name, created_at, updated_at) VALUES(?,?,?,?)',
+                       (mac, name, now, now))
+        except sqlite3.IntegrityError as e:
+            pass
     conn.commit()
 

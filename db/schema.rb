@@ -14,8 +14,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_19_195940) do
   create_table "network_devices", force: :cascade do |t|
     t.string "mac_address"
     t.string "name"
+    t.datetime :detected_at, :datetime
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index :network_devices, :mac_address, unique: true
 end

@@ -5,6 +5,8 @@
       <tr>
         <th>MAC Address</th>
         <th>Name</th>
+        <th>Created</th>
+        <th>Last Detected</th>
         <th>Actions</th>
       <tr>
     </thead>
@@ -12,6 +14,8 @@
       <tr>
         <th><%= network_device.mac_address%></th>
         <th><%= network_device.name%></th>
+        <th><%= network_device.created_at%></th>
+        <th><%= network_device.detected_at%></th>
         <th class='btn-group'>
           <button type='button' class='btn btn-primary'>Track</button>
           <%= link_to 'Edit', edit_network_device_path(network_device), class: 'btn btn-success' %>
