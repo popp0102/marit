@@ -14,6 +14,7 @@
         <th><%= network_device.name%></th>
         <th class='btn-group'>
           <button type='button' class='btn btn-primary'>Track</button>
+          <%= link_to 'Edit', edit_network_device_path(network_device), class: 'btn btn-success' %>
           <%= button_to 'Delete', network_device, method: :delete, class: 'btn btn-danger' %>
       <tr>
     <% end %>

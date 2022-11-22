@@ -1,0 +1,10 @@
+<h1>Update Device </h1>
+MAC Address: <%= @network_device.mac_address %></br>
+
+<%= form_with model: @network_device, url: network_device_path(@network_device), method: :patch, local: true do |f| %>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" name='network_device[name]' class="form-control" placeholder="Enter Name" id="network_device_name", value=<%= @network_device.name %>>
+  </div>
+  <button type="submit" class="btn btn-primary">Edit</button>
+<% end %>

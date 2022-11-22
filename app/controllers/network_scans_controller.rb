@@ -3,6 +3,7 @@ class NetworkScansController < ApplicationController
   end
 
   def new
+    system("sudo ./bin/sniff.py")
   end
 end
 
