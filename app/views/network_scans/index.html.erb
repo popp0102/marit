@@ -1,10 +1,19 @@
 <h1> Scan Network </h1>
 
-<form action='/network_scans/new'>
-<button type='submit'>Perform Scan</button>
+<form action='/network_scans/new', id='perform_scan_form'>
+  <button id='perform_scan_button' class='btn btn-info' type='submit'>Perform Scan</button>
 </form>
 
-<button class="btn btn-primary" type="button" disabled>
-  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  <span class="sr-only">Loading...</span>
-</button>
+<script>
+  $(document).ready(function() {
+      $("#perform_scan_button").click(function() {
+        $(this).prop("disabled", true);
+        $(this).html(
+          `<span class="spinner-border spinner-border-sm" role="status"
+          aria-hidden="true"></span> Performing Scan...`
+        );
+        $("#perform_scan_form").submit();
+      });
+  });
+</script>
+

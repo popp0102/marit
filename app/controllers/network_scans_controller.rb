@@ -4,6 +4,7 @@ class NetworkScansController < ApplicationController
 
   def new
     system("sudo ./bin/sniff.py")
+    redirect_to network_devices_url
   end
 end
 
