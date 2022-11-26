@@ -12,5 +12,13 @@ class NetworkScansController < ApplicationController
     system(cmd)
     redirect_to network_devices_url
   end
+
+  def rts
+    render :rts
+  end
+
+  def rts_scan
+    puts params
+  end
 end
 

@@ -34,17 +34,20 @@
           <a class="nav-link" href="/network_devices">Network Devices</a>
         </li>
         <li class="nav-item" id="nav_add_network_devices">
-          <a class="nav-link" href="/network_devices/new">Add Network Device</a>
+          <a class="nav-link" href="/network_devices/new">Add Device</a>
         </li>
         <li class="nav-item" id="nav_scan_network_devices">
           <a class="nav-link" href="/network_scans">Scan Network</a>
+        </li>
+        <li class="nav-item" id="nav_rts_network_devices">
+          <a class="nav-link" href="/network_scans/rts">RTS Scan</a>
         </li>
       </ul>
     </nav>
 
     <script>
       $(document).ready(function() {
-        $('#nav_list_network_devices, #nav_add_network_devices, #nav_scan_network_devices' ).click(function() {
+        $('#nav_list_network_devices, #nav_add_network_devices, #nav_scan_network_devices, #nav_rts_network_devices' ).click(function() {
           localStorage.setItem('active_tab', $(this).attr('id'));
         });
         $('li.active').removeClass('active');
