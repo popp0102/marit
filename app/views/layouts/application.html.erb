@@ -27,20 +27,32 @@
     </div>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand" href="/">Home</a>
+      <a class="navbar-brand" href="/">MARIT</a>
 
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" id="nav_list_network_devices">
           <a class="nav-link" href="/network_devices">Network Devices</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="nav_add_network_devices">
           <a class="nav-link" href="/network_devices/new">Add Network Device</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="nav_scan_network_devices">
           <a class="nav-link" href="/network_scans">Scan Network</a>
         </li>
       </ul>
     </nav>
+
+    <script>
+      $(document).ready(function() {
+        $('#nav_list_network_devices, #nav_add_network_devices, #nav_scan_network_devices' ).click(function() {
+          localStorage.setItem('active_tab', $(this).attr('id'));
+        });
+        $('li.active').removeClass('active');
+        active_tab_id = '#' + localStorage.getItem('active_tab');
+        $(active_tab_id).addClass('active');
+
+      });
+    </script>
 
     <div class="container float-left pt-3 my-3" style="margin-top: 30px; margin-left: 10px" >
       <%= yield %>
