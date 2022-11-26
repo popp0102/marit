@@ -3,7 +3,13 @@ class NetworkScansController < ApplicationController
   end
 
   def new
-    system("sudo ./bin/sniff.py")
+    strong_params = params.require(:network_scan).permit(:interface, :duration)
+    interface     = strong_params[:interface]
+    duration      = strong_params[:duration]
+
+    cmd = "sudo ./bin/sniff.py -i #{interface} -d #{duration}"
+    puts "running:'#{cmd}'"
+    system(cmd)
     redirect_to network_devices_url
   end
 end

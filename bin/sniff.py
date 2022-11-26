@@ -4,15 +4,23 @@ from scapy.all import *
 import sqlite3
 import datetime
 import random
+import argparse
 
 MACS = {}
 
-def handler(packet):
+def cmd_parse():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--interface", help="the network interface to sniff on", type=str, required=True)
+    parser.add_argument("-d", "--duration", help="the duration, in seconds, for scan", type=int, required=True)
+
+    args = parser.parse_args()
+    return args
+
+def collect_packets(packet):
     MACS[packet.src] = 1
     MACS[packet.dst] = 1
 
-if __name__ == "__main__":
-    sniff(iface="wlo1", prn=handler, store=0, timeout=10)
+def write_to_db():
     conn = sqlite3.connect('./db/development.sqlite3')
     cur  = conn.cursor()
     now  = str(datetime.datetime.now())
@@ -24,4 +32,15 @@ if __name__ == "__main__":
         except sqlite3.IntegrityError as e:
             pass
     conn.commit()
+
+def main():
+    args      = cmd_parse()
+    interface = args.interface
+    duration  = args.duration
+
+    sniff(iface=interface, prn=collect_packets, store=0, timeout=duration)
+    write_to_db()
+
+if __name__ == "__main__":
+    main()
 
