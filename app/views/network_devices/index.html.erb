@@ -23,5 +23,15 @@
       <tr>
     <% end %>
   </table>
+  <button id='clear_all_devices' class='btn btn-info'>Clear All Devices</button>
 </div>
+
+<script>
+  $(document).ready(function() {
+      $("#clear_all_devices").click(function() {
+        fetch('/network_devices/destroy_all', { method: 'DELETE' })
+        .then(res => { location.reload() })
+      });
+  });
+</script>
 

@@ -31,7 +31,13 @@ class NetworkDevicesController < ApplicationController
     redirect_to network_devices_url
   end
 
+  def destroy_all
+    NetworkDevice.all.destroy_all
+    redirect_to network_devices_url, status: 303
+  end
+
   def show
     puts "tracking: #{params}"
   end
 end
+
