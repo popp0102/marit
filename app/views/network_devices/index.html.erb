@@ -4,6 +4,7 @@
     <thead class='thead-light'>
       <tr>
         <th>MAC Address</th>
+        <th>IP Address</th>
         <th>Name</th>
         <th>Created</th>
         <th>Last Detected</th>
@@ -13,6 +14,7 @@
     <% @network_devices.each do |network_device| %>
       <tr>
         <th><%= network_device.mac_address%></th>
+        <th><%= network_device.ip_address%></th>
         <th><%= network_device.name%></th>
         <th><%= network_device.created_at%></th>
         <th><%= network_device.detected_at%></th>

@@ -20,7 +20,7 @@ class NetworkDevicesController < ApplicationController
   end
 
   def create
-    @network_device = NetworkDevice.new(params.require(:network_device).permit(:mac_address, :name))
+    @network_device = NetworkDevice.new(params.require(:network_device).permit(:mac_address, :ip_address, :name))
     @network_device.save!
     redirect_to network_devices_url
   end
