@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 from scapy.all import *
+from datetime import *
+import pytz
 import sqlite3
-import datetime
 import random
 import argparse
 
@@ -31,7 +32,7 @@ def collect_packets(packet):
 def write_to_db(interface):
     conn = sqlite3.connect('./db/development.sqlite3')
     cur  = conn.cursor()
-    now  = str(datetime.datetime.now())
+    now  = datetime.now(tz=pytz.UTC)
     name = "scan-" + str(random.randrange(1000000))
     for mac, ip in MACS.items():
         try:
@@ -51,7 +52,7 @@ def main():
     if mac == None:
         sniff(iface=interface, prn=collect_packets, store=0, timeout=duration)
     else:
-        sniff(iface=interface, prn=collect_packets, store=0, timeout=duration, lfilter=lambda d: d.src == mac or d.dst == mac)
+        sniff(iface=interface, prn=collect_packets, store=0, timeout=duration, lfilter=lambda d: d.src == mac)
 
     write_to_db(interface)
 
