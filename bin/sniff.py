@@ -39,7 +39,7 @@ def write_to_db(interface):
             cur.execute('INSERT INTO network_devices(mac_address, name, interface, ip_address, created_at, updated_at, detected_at) VALUES(?,?,?,?,?,?,?)',
                        (mac, name, interface, ip, now, now, now))
         except sqlite3.IntegrityError as e:
-            print("Error: " + str(e))
+            #print("Error: " + str(e))
             cur.execute('UPDATE network_devices SET detected_at=? WHERE mac_address=?', (now, mac))
     conn.commit()
 
