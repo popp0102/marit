@@ -20,14 +20,23 @@
         <td><%= network_device.created_at%></td>
         <td><%= network_device.detected_at%></td>
         <td class='row'>
-          <div class='float-left col-xs-4'>
-            <button type='button' class='btn btn-primary'>RTS/CTS</button>
+          <div class='float-left col-xs-3'>
+            <button type='button' class='btn btn-warning'>RTS</button>
           </div>
-          <div class='float-left col-xs-4'>
-            <%= link_to 'Edit', edit_network_device_path(network_device), class: 'btn btn-success'%>
+          <div class='float-left col-xs-3'>
+            <%= link_to edit_network_scan_path(network_device), class: 'btn btn-primary' do%>
+              <i class="fa fa-rss"></i>
+            <% end %>
           </div>
-          <div class='float-left col-xs-4'>
-            <%= button_to 'Delete', network_device, method: :delete, class: 'btn btn-danger float-left'%>
+          <div class='float-left col-xs-3'>
+            <%= link_to edit_network_device_path(network_device), class: 'btn btn-success' do%>
+              <i class="fas fa-edit"></i>
+            <% end %>
+          </div>
+          <div class='float-left col-xs-3'>
+            <%= button_to network_device, method: :delete, class: 'btn btn-danger float-left' do%>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
           </div>
         </td>
       <tr>

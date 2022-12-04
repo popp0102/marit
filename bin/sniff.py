@@ -6,12 +6,14 @@ import datetime
 import random
 import argparse
 
-MACS = {}
+MACS   = {}
+FILTER = None
 
 def cmd_parse():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--interface", help="the network interface to sniff on", type=str, required=True)
     parser.add_argument("-d", "--duration", help="the duration, in seconds, for scan", type=int, required=True)
+    parser.add_argument("-m", "--mac", help="the mac address to filter for", type=str, required=False)
 
     args = parser.parse_args()
     return args
@@ -36,15 +38,21 @@ def write_to_db(interface):
             cur.execute('INSERT INTO network_devices(mac_address, name, interface, ip_address, created_at, updated_at, detected_at) VALUES(?,?,?,?,?,?,?)',
                        (mac, name, interface, ip, now, now, now))
         except sqlite3.IntegrityError as e:
-            pass
+            print("Error: " + str(e))
+            cur.execute('UPDATE network_devices SET detected_at=? WHERE mac_address=?', (now, mac))
     conn.commit()
 
 def main():
     args      = cmd_parse()
     interface = args.interface
     duration  = args.duration
+    mac       = args.mac
 
-    sniff(iface=interface, prn=collect_packets, store=0, timeout=duration)
+    if mac == None:
+        sniff(iface=interface, prn=collect_packets, store=0, timeout=duration)
+    else:
+        sniff(iface=interface, prn=collect_packets, store=0, timeout=duration, lfilter=lambda d: d.src == mac or d.dst == mac)
+
     write_to_db(interface)
 
 if __name__ == "__main__":

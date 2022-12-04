@@ -2,10 +2,13 @@
 
 <form action='/network_scans/new', id='perform_scan_form'>
   <div class="form-group">
-    <input type="text" name='network_scan[interface]' class="form-control" placeholder="Interface">
+    <input type="text" name='network_scan[interface]' class="form-control" placeholder="Interface", value=<%= @network_device&.interface %>>
   </div>
   <div class="form-group">
-    <input type="text" name='network_scan[duration]' class="form-control" placeholder="Scan Duration (seconds)">
+    <input type="text" name='network_scan[duration]' class="form-control" placeholder="Scan Duration (default 10 seconds)">
+  </div>
+  <div class="form-group">
+    <input type="text" name='network_scan[mac_address]' class="form-control" placeholder="MAC Address (leave blank to scan all)", value=<%= @network_device&.mac_address %> >
   </div>
   <button id='perform_scan_button' class='btn btn-info' type='submit'>Perform Scan</button>
 </form>

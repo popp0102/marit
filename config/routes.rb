@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   # Network Scans
   get '/network_scans/rts', to: 'network_scans#rts'
   post '/network_scans/rts', to: 'network_scans#rts_scan'
-  resources :network_scans, only: [:index, :new]
+  resources :network_scans, only: [:index, :new, :edit]
 end
 
