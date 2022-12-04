@@ -17,18 +17,24 @@ def cmd_parse():
     return args
 
 def collect_packets(packet):
-    MACS[packet.src] = 1
-    MACS[packet.dst] = 1
+    ip_src = ""
+    ip_dst = ""
+    if IP in packet:
+        ip_src = packet[IP].src
+        ip_dst = packet[IP].dst
 
-def write_to_db():
+    MACS[packet.src] = ip_src
+    MACS[packet.dst] = ip_dst
+
+def write_to_db(interface):
     conn = sqlite3.connect('./db/development.sqlite3')
     cur  = conn.cursor()
     now  = str(datetime.datetime.now())
     name = "scan-" + str(random.randrange(1000000))
-    for mac, valud in MACS.items():
+    for mac, ip in MACS.items():
         try:
-            cur.execute('INSERT INTO network_devices(mac_address, name, created_at, updated_at) VALUES(?,?,?,?)',
-                       (mac, name, now, now))
+            cur.execute('INSERT INTO network_devices(mac_address, name, interface, ip_address, created_at, updated_at, detected_at) VALUES(?,?,?,?,?,?,?)',
+                       (mac, name, interface, ip, now, now, now))
         except sqlite3.IntegrityError as e:
             pass
     conn.commit()
@@ -39,7 +45,7 @@ def main():
     duration  = args.duration
 
     sniff(iface=interface, prn=collect_packets, store=0, timeout=duration)
-    write_to_db()
+    write_to_db(interface)
 
 if __name__ == "__main__":
     main()
