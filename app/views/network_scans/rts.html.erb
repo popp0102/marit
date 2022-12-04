@@ -2,10 +2,10 @@
 
 <form action='/network_scans/rts' method='post' id='perform_rts_scan_form'>
   <div class="form-group">
-    <input type="text" name='network_scan[spoofed_ip]' class="form-control" placeholder="Spoofed IP">
+    <input type="text" name='network_scan[spoofed_mac]' class="form-control" placeholder="Spoofed IP (default: 11:22:33:44:55:66)">
   </div>
   <div class="form-group">
-    <input type="text" name='network_scan[target_mac]' class="form-control" placeholder="Target MAC Address">
+    <input type="text" name='network_scan[target_mac]' class="form-control" placeholder="Target MAC Address", , value=<%= @network_device&.mac_address %>>
   </div>
   <button id='perform_rts_scan_button' class='btn btn-info' type='submit'>Perform RTS Scan</button>
 </form>
