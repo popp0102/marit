@@ -14,11 +14,11 @@
     <% @network_devices.each do |network_device| %>
       <tr>
         <td><%= network_device.name%></td>
-        <td><%= network_device.interface%></td>
+        <td><%= network_device&.interface%></td>
         <td><%= network_device.mac_address%></td>
-        <td><%= network_device.ip_address%></td>
+        <td><%= network_device&.ip_address%></td>
         <td><%= network_device.created_at%></td>
-        <td <%=(Time.now.utc - network_device.detected_at) < 1.minutes ? 'class=bg-danger text-dark' : ''%>><%= network_device.detected_at%></td>
+        <td <%=(Time.now.utc - (network_device&.detected_at || 1.days.ago)) < 20.seconds ? 'class=bg-danger text-dark' : ''%>><%= network_device&.detected_at%></td>
         <td class='row'>
           <div class='float-left col-xs-3'>
             <%= link_to network_scans_rts_path(id: network_device.id), class: 'btn btn-warning' do%>

@@ -26,8 +26,9 @@ def collect_packets(packet):
         ip_src = packet[IP].src
         ip_dst = packet[IP].dst
 
-    MACS[packet.src] = ip_src
-    MACS[packet.dst] = ip_dst
+    if hasattr(packet, 'src'):
+        MACS[packet.src] = ip_src
+        MACS[packet.dst] = ip_dst
 
 def write_to_db(interface):
     conn = sqlite3.connect('./db/development.sqlite3')
@@ -39,8 +40,7 @@ def write_to_db(interface):
             cur.execute('INSERT INTO network_devices(mac_address, name, interface, ip_address, created_at, updated_at, detected_at) VALUES(?,?,?,?,?,?,?)',
                        (mac, name, interface, ip, now, now, now))
         except sqlite3.IntegrityError as e:
-            #print("Error: " + str(e))
-            cur.execute('UPDATE network_devices SET detected_at=? WHERE mac_address=?', (now, mac))
+            cur.execute('UPDATE network_devices SET detected_at=?, interface=? WHERE mac_address=?', (now, interface, mac))
     conn.commit()
 
 def main():

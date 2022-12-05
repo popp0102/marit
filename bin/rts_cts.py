@@ -17,7 +17,8 @@ def cmd_parse():
     return args
 
 def send_rts_frame(interface, target, source):
-    rts   = Dot11(type=1, subtype=11, addr1=target, addr2=source)
+    #rts   = Dot11(type=1, subtype=11, addr1=target, addr2=source)
+    rts   = Dot11(type=1, subtype=11, addr1=source, addr2=target)
     frame = RadioTap()/rts
     sendp(frame, iface=interface, count=5, inter=0.1)
 
@@ -46,9 +47,8 @@ def main():
     print("\nSending RTS packet to " + target)
     send_rts_frame(interface, target, spoofed)
 
-    print("\nListening for CTS packet to " + spoofed)
-
-    sniff(iface=interface, prn=listen_for_cts(target, spoofed), store=0, timeout=duration)
+    #print("\nListening for CTS packet to " + spoofed)
+    #sniff(iface=interface, prn=listen_for_cts(target, spoofed), store=0, timeout=duration)
 
 if __name__ == "__main__":
     main()
